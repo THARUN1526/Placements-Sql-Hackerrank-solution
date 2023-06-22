@@ -1,0 +1,25 @@
+
+Here's an explanation of the steps to solve the problem:
+
+1. Join the Friends table with the Students table using the ID column, as Friends.ID corresponds to the ID of the students.
+
+2. Join the result of the previous step with the Packages table using the Friend_ID column, as this represents the ID of the best friend.
+
+3. Compare the salary of each student with the salary of their best friend to determine if the best friend has a higher salary.
+
+4. Select the names of the students whose best friends have a higher salary.
+
+5. Order the results by the salary amount offered to the best friends in ascending order.
+
+The final SQL query to solve this problem could look like this:
+
+```sql
+SELECT S.Name
+FROM Students S
+JOIN Friends F ON S.ID = F.ID
+JOIN Packages P ON F.Friend_ID = P.ID
+WHERE P.Salary > S.Salary
+ORDER BY P.Salary ASC;
+```
+
+This query retrieves the names of the students from the Students table, joins them with the Friends and Packages tables, compares the salaries, filters the ones where the best friend's salary is higher, and finally orders the results by the salary of the best friend in ascending order.
