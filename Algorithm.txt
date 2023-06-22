@@ -1,0 +1,14 @@
+
+1. The outermost query selects the `sn` (Name) column from the table derived from the subqueries.
+
+2. The first subquery `(select S.ID si, S.Name sn, P.Salary ps from Students S join Packages P on S.ID=P.ID)` retrieves data from the `Students` and `Packages` tables. It joins these tables on the `ID` column and selects the `ID` as `si`, `Name` as `sn`, and `Salary` as `ps`.
+
+3. The second subquery `(select FF.ID fi, FF.Friend_ID fd, PP.Salary pps from Friends FF join Packages PP on FF.Friend_ID=PP.ID)` retrieves data from the `Friends` and `Packages` tables. It joins these tables on the `Friend_ID` column and selects the `ID` as `fi`, `Friend_ID` as `fd`, and `Salary` as `pps`.
+
+4. The subqueries are then joined using the condition `temp1.si = temp2.fi`, which means the `ID` from the first subquery must match the `Friend_ID` from the second subquery.
+
+5. Additionally, the join condition `temp1.ps < temp2.pps` is applied, meaning the `Salary` from the first subquery must be less than the `Salary` from the second subquery.
+
+6. The resulting rows are ordered by `temp2.pps` (the salary from the second subquery) in ascending order.
+
+In summary, this query retrieves the names (`sn`) of students (`temp1`) who have a lower salary (`temp1.ps`) compared to their friends (`temp2`) and sorts the results based on the friend's salary (`temp2.pps`) in ascending order.
